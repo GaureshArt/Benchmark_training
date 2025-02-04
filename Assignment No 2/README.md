@@ -1,7 +1,10 @@
 #Assignment No 2 
 
- ##Image Slider output Demo:
-https://github.com/user-attachments/assets/045086b7-843c-4939-a555-ec074db884b5
+ ## Image Slider Output:
+
+https://github.com/user-attachments/assets/80f6aa82-bc3a-429f-8acc-58f982deb7df
+
+
 
 
 ## Drag and Drop in todo Output:
