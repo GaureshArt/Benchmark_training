@@ -190,4 +190,20 @@ inputFieldPOST.addEventListener("click", (e) => {
       });
     inputFieldPOST.querySelector(".updated-text").value = "";
   }
+  if(e.target.classList.contains("DELETE-button")){
+    if(confirm("Are you sure? It will delete all todos")){
+      axiosInstance.delete('/todos/*')
+      .then((res)=>{
+        toastMessage(res.status,res.message,res.data);
+        orderList.innerHTML = ''
+      })
+      .catch((err)=>{
+        toastMessage(err.status,err.message);
+      });
+    }
+
+  }
+
 });
+
+
