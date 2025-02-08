@@ -1,0 +1,61 @@
+.main{
+    width: 100vw;
+    height: 100vh;
+    background-color: aliceblue;
+    padding: 1rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.product-section{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.product-card{
+    border: 1px solid #131313;
+    width: 18vw;
+    height: 47vh;
+    background-color:#d8def1;
+    
+    padding: 1rem;
+    border-radius: 1.4rem;
+    .product-image{
+        object-fit: contain;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        height: 50%;
+        mix-blend-mode: multiply;
+        
+        
+    }
+
+    .product-info{
+        margin-top: 1rem;
+        
+    }
+    .product-title{
+        font-size: 1.7rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+
+        height: 50px; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; 
+        width: 100%;
+    }
+   
+    .product-rating{
+        font-size: 1rem;
+    }
+    .product-price{
+        margin-top: .6rem;
+        font-size: 1.8rem;
+        font-weight: 800;
+    }
+
+}

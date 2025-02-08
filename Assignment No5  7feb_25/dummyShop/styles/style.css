@@ -1,0 +1,49 @@
+.hero-section{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: aliceblue;
+    padding: 5rem;
+    gap: 1rem;
+    .img-div{
+        width: 40vw;
+    }
+    .imageSlider{
+        transition: opacity 1s ease-in-out;
+        max-width: 100%;
+        height: 87vh;
+        display: block;
+        mix-blend-mode: multiply;
+        
+    }
+
+    .slogan-div{
+
+        width: 65vw;
+
+        display: grid;
+        place-items: center;
+        h1{
+            font-size: 4rem;
+            font-weight: bold;
+            font-family:'Courier New', Courier, monospace;
+        }
+        button{
+            width: 5rem;
+            display: block;
+            letter-spacing: 1px;
+            margin: 0 auto;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    }
+}
+
+a {
+    color: inherit; 
+    text-decoration: none; 
+}
+.hidden{
+    opacity: 0;
+}
+
