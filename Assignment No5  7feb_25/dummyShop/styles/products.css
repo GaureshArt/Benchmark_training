@@ -19,7 +19,7 @@
     width: 18vw;
     height: 47vh;
     background-color:#d8def1;
-    
+    cursor: pointer;
     padding: 1rem;
     border-radius: 1.4rem;
     .product-image{
@@ -32,7 +32,8 @@
         
         
     }
-
+    
+    
     .product-info{
         margin-top: 1rem;
         
@@ -57,5 +58,29 @@
         font-size: 1.8rem;
         font-weight: 800;
     }
+    .Add-cart{
+        margin-left: 1rem;
+        border:1px solid #131313;
+        border-radius:1rem;
+        width: 6rem;
+        height: 2.5rem;
+        font-weight:300;
+        letter-spacing: 1px;
+        font-size: 1rem;
+        background-color: #131313;
+        color: #ecedf1;
+        cursor: pointer;
+    }
+    .Add-cart:hover{
+        background-color: #ecedf1;
+        color: #131313;
+    }
 
 }
+
+.product-card:hover .product-image{
+    transform: scale(1.1);
+    transition: transform .4s ease-in-out;
+}
+
+
