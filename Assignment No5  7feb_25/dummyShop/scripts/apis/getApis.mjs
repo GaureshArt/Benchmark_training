@@ -54,7 +54,7 @@ export const getUserApi = async ()=>{
     const id = Math.floor(Math.random()*10)+1;
     
     try{
-        const res = await userInstance.get(`/${1}`);
+        const res = await userInstance.get(`/${id}`);
         console.log(res.data)
         return res;
     }catch(err){

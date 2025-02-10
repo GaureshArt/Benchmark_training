@@ -1,5 +1,5 @@
 import { getUserCartApi ,getProductByIdApi} from "./apis/getApis.mjs";
-import { patchUserCartApi } from "./apis/patchApis.mjs";
+import { patchUserCartApi, removeUserCartCardApi } from "./apis/patchApis.mjs";
 
 const mainSection = document.querySelector('.main');
 
@@ -140,19 +140,22 @@ const handleSaveCart = (cartCard,editDiv)=>{
     
 }
 
-const handleRemoveCartCard = (cardCart,removeDiv)=>{
-    const prodId = cardCart.dataset.productId;
-     const dateText = cartCard.closest('.cart-section').querySelector('.cart-date').innerText;
-    const cartId = cartCard.closest('.cart-section').dataset.cartId;
+const handleRemoveCartCard = (cardCart)=>{
+    // const remove = removeDiv.closest()
+    
+    // const prodId = cardCart.dataset.productId;
+    console.log(cardCart);
+     const dateText = cardCart.closest('.cart-section').querySelector('.cart-date').innerText;
+    const cartId = cardCart.closest('.cart-section').dataset.cartId;
     const date = new Date(dateText + " UTC");
     console.log("date:",date.toISOString())
     const updateData = {
         date:date.toISOString(),
-        productId :cartCard.dataset.productId,
-        quantity:quantityValue,
+        productId :cardCart.dataset.productId,
+        quantity:cardCart.dataset.quantity,
         cartId:cartId
     }
-    patchUserCartApi(updateData);
+    removeUserCartCardApi(updateData);
 }
 mainSection.addEventListener('click',(e)=>{
     const cardCart = e.target.closest('.cart-card');

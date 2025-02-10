@@ -29,6 +29,9 @@ export const patchUserCartApi = async (data)=>{
 
 
 export const  removeUserCartCardApi = async (data)=>{
+    if(!confirm("Are you sure")){
+return ;
+    }
     const token = sessionStorage.getItem('user-token');
     const id = getId(token).sub;   
     const cartData = sessionStorage.getItem('cartData') ;
@@ -47,5 +50,7 @@ export const  removeUserCartCardApi = async (data)=>{
         date:data.date,
         products:updateData
     })
+    alert("Cart is removed")
+    location.reload();
     
 }

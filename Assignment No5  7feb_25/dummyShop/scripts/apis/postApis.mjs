@@ -61,7 +61,7 @@ export const postCartApi = async(id)=>{
             products:{productId:id,quantity:1}
         })
     }
-    alert("Cart is saved")
+    alert("Cart is saved");
 }catch(err){
     console.log(`Error postCartApi`,err);
 }
