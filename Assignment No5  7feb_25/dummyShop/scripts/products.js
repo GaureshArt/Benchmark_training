@@ -1,7 +1,13 @@
 import { getAllProductsApi } from "./apis/getApis.mjs";
-
+import { postCartApi } from "./apis/postApis.mjs";
 
 const productSection = document.querySelector('.product-section');
+const myCartBtn = document.querySelector('.my-cart')
+const fliterBtn = document.querySelector('.filter')
+
+
+
+
 const showAllProducts = (products)=>{
     console.log(products.data)
     for(const prod of products.data){
@@ -33,10 +39,18 @@ const renderAllProducts = async()=>{
     showAllProducts(productsData);
 }
 
+
+const handleAddCart = async (prodcard)=>{
+    const id = +prodcard.id;
+    const res = await postCartApi(id);
+    
+}
+
 productSection.addEventListener('click',(e)=>{
     
     if(e.target.className === 'Add-cart'){
-        //here Add-cart functionality will invoked 
+            const prodcard = e.target.closest('.product-card');
+            handleAddCart(prodcard);
         return   ;
     }
     if(e.target.closest('.product-card')){
@@ -45,6 +59,8 @@ productSection.addEventListener('click',(e)=>{
         window.location.href = 'product-view.html';
     }
 })
+
+
 
 
 

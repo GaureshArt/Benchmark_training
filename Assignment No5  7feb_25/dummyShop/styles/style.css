@@ -4,15 +4,50 @@
     align-items: center;
 }
 .login-section{
+    background-color: antiquewhite;
     position: absolute;
     border:2px solid #131313;
     border-radius: 1rem;
     width: 50vw;
     height: 50vh;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    .username-div,.password-div{
+        display: flex;
+        align-items: center;
+        padding-bottom: .4rem;
+    }
     h1{
         text-align: center;
         font-size: 2rem;
+        font-weight: 600;
+    }
+    span{
+        font-size: 1.2rem;
+        width: 7rem;
+        display: block;
+    }
+    input{
+        width: 30vw;
+        height: 4vh;
+        border-radius: .5rem;
+        border: 1px solid #131313;
+    }
+    button{
+        background-color: #131313;
+        color:#fff;
+        width: auto;
+        height: 3rem;
+        border: 1px solid #131313;
+        border-radius: 1rem;
+        
+    }
+    .button-div{
+        margin:0 auto;
     }
 
 
