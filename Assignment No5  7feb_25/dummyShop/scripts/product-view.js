@@ -1,4 +1,6 @@
 import { getProductByIdApi } from "./apis/getApis.mjs";
+import { postCartApi } from "./apis/postApis.mjs";
+
 
 const productSection = document.querySelector('.product-section');
 const productImage = document.querySelector('.product-image');
@@ -50,6 +52,24 @@ quantityDiv.addEventListener('click',(e)=>{
         return;
     }
 })
+
+
+
+
+ const handleAddCart = async (prodcard)=>{
+    console.log(prodcard)
+    const id = +prodcard.id;
+    const res = await postCartApi(id);
+    
+}
+const addCart = document.querySelector('.Add-cart');
+addCart.addEventListener('click',(e)=>{
+    
+    
+    handleAddCart(productSection);
+
+})
+
 
 
 renderProductById(productId);

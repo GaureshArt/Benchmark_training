@@ -42,7 +42,8 @@ const renderAllProducts = async()=>{
 }
 
 
-const handleAddCart = async (prodcard)=>{
+ const handleAddCart = async (prodcard)=>{
+    console.log(prodcard)
     const id = +prodcard.id;
     const res = await postCartApi(id);
     
@@ -72,9 +73,7 @@ filterOpt.addEventListener('change',async (e)=>{
     }
     
 })
-fetch('https://fakestoreapi.com/products/categories')
-            .then(res=>res.json())
-            .then(json=>console.log(json))
+
 
 renderAllProducts();    
 
