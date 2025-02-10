@@ -1,15 +1,16 @@
-import { getAllProductsApi } from "./apis/getApis.mjs";
+import { getAllProductsApi, getProductsByCategoryApi } from "./apis/getApis.mjs";
 import { postCartApi } from "./apis/postApis.mjs";
 
 const productSection = document.querySelector('.product-section');
 const myCartBtn = document.querySelector('.my-cart')
-const fliterBtn = document.querySelector('.filter')
+const filterOpt = document.querySelector('.filter')
 
 
 
 
 const showAllProducts = (products)=>{
     console.log(products.data)
+    productSection.innerHTML  = '';
     for(const prod of products.data){
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
@@ -36,6 +37,7 @@ const getAllProducts = async ()=>{
 
 const renderAllProducts = async()=>{
     const productsData = await getAllProducts();
+    console.log("prod",productsData);
     showAllProducts(productsData);
 }
 
@@ -61,8 +63,18 @@ productSection.addEventListener('click',(e)=>{
 })
 
 
-
-
+filterOpt.addEventListener('change',async (e)=>{
+    if(e.target.value=='All'){
+        renderAllProducts();
+    }else{
+        const res = await getProductsByCategoryApi(e.target.value);
+        showAllProducts(res);
+    }
+    
+})
+fetch('https://fakestoreapi.com/products/categories')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
 
 renderAllProducts();    
 
