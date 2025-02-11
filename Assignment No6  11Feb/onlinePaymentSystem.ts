@@ -16,9 +16,9 @@ enum PaymentEnum{
     paymentType:PaymentEnum;
     constructor(paymentType:PaymentEnum){
         this.paymentType = paymentType;
-        console.log(`Payment with ${paymentType} is getting Started.`)
+        console.log(`Payment with ${this.paymentType} is getting Started.`)
     }
-   
+   abstract processPayment():string;
 }
 
 
