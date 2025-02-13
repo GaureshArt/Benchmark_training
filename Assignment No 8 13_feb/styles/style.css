@@ -9,7 +9,36 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    flex-direction: column;
+    padding: 4rem;
+    gap: 8rem;
+}
+a{
+    text-decoration: none;
+    color: #ff0000;
+}
+nav{
+    width: 100vw;
+    
+    .expenseHistory{
+        display: block;
+        margin-left:auto;
+        margin-right: 10%;
+        width: 10vw;
+        height: 5vh;
+        /* border: 1px solid #ff0000; */
+        border: none;
+        border-radius: .4rem;
+        background-color: #ffc3c3;
+        color: #ff0000;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+    .expenseHistory:hover{
+        background-color: #fea4a4;
+    }
 }
 .addExpenseDiv{
     background-color: #fbfff3;
@@ -19,7 +48,7 @@
     border-radius: 1rem;
     padding: 1rem;
     width: 40vw;
-    /* height: 40vh; */
+    
     display: grid;
     gap: 1.9rem;
     grid-template-columns: repeat(2,1fr);
@@ -94,6 +123,7 @@
             border:.5px solid #dc3ae8;
             font-size: 1rem;
             color: #dc3ae8;
+            outline: none;
             font-family: monospace;
         }
 
@@ -111,6 +141,7 @@
             background-color: #ebecfb;
             border:.5px solid #4b3ae8;
             color: #4b3ae8;
+            outline: none;
         }
     }
 
@@ -123,6 +154,9 @@
         background-color: #fbe1cf;
         color: #f0753c;
         cursor: pointer;
+    }
+    .submit:hover{
+        background-color: #fed8bc;
     }
 }
 

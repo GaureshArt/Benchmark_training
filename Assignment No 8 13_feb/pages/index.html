@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <script defer type="module" src="../scripts/script.js"></script>
 </head>
 <body>
     <div class="main">
-        <form action="">
+        <nav><button class="expenseHistory"> <a href="expenseHistory.html"> Expense History </a></button></nav>
+
+        <form class="expenseForm">
 
             <div class="addExpenseDiv">
                 <div class="descriptionDiv">
                     <span>Description</span>
-                <textarea id="" name="description" rows="4" cols="50" placeholder="Enter your note here..."></textarea>
+                <textarea class="description" name="description" rows="4" cols="50" placeholder="Enter your note here..." required></textarea>
             </div>
             <div class="amountDiv">
                 <span>Amount</span>
-                <input type="number" value="" class="amount">
+                <input type="number" value="" class="amount" required>
             </div>
             <div class="dateDiv">
                 <span>Date of Expense</span>
-                <input  type="date" class="expenseDate">
+                <input  type="date" class="expenseDate" required>
             </div>
             <div class="categoryDiv">
                 <span>Category</span>
@@ -44,7 +47,7 @@
             <button type="submit" class="submit">Submit</button>
         </div>
         
-    </form>
+        </form>
         
 
     </div>
