@@ -93,7 +93,8 @@ const removeExpense = (removeBtn :HTMLButtonElement):void=>{
     console.log(expenseId)
     exp.removeExpense(expenseId);
     exp.storeExpense();
-    showExpenseHistory();
+    
+    window.location.reload();
 }
 
 expenseHistoryDiv.addEventListener('click',(e:Event):void=>{

@@ -67,7 +67,7 @@ const removeExpense = (removeBtn) => {
     console.log(expenseId);
     exp.removeExpense(expenseId);
     exp.storeExpense();
-    showExpenseHistory();
+    window.location.reload();
 };
 expenseHistoryDiv.addEventListener('click', (e) => {
     // const removeBtn = document.querySelector('.remove') as HTMLButtonElement;
