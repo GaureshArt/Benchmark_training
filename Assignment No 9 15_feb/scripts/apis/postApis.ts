@@ -16,18 +16,18 @@ export const authLogInApi = async (
     );
     return res.data;
   } catch (err) {
-    console.log(`Error in authLogInApi`);
     throw err;
   }
 };
 
-const cartIsAlreadyAdded = (cartData:getUserCartType[],id:number):boolean=>{
-console.log("cat",cartData)
-console.log("Id",id)
-    return cartData.some(cart => 
-        cart.products.some(product => product.productId === id)
-    );
-}
+const cartIsAlreadyAdded = (
+  cartData: getUserCartType[],
+  id: number
+): boolean => {
+  return cartData.some((cart) =>
+    cart.products.some((product) => product.productId === id)
+  );
+};
 export const postCartApi = async (
   id: number,
   quantity: number
@@ -36,13 +36,12 @@ export const postCartApi = async (
     const cartData: getUserCartType[] = JSON.parse(
       sessionStorage.getItem("cartData") as string
     );
-    if(cartIsAlreadyAdded(cartData,id)){
-        alert("Cart is already added!!");
-        return;
+    if (cartIsAlreadyAdded(cartData, id)) {
+      alert("Cart is already added!!");
+      return;
     }
     const token = sessionStorage.getItem("user-token") as string;
     const userid: number = +getId(token);
-    console.log("cart date", cartData);
 
     const newCart: Omit<getUserCartType, "id"> = {
       date: new Date().toISOString(),
@@ -51,11 +50,10 @@ export const postCartApi = async (
     };
     const res = await cartInstance.post<getUserCartType>("/", newCart);
     cartData.push(res.data);
-    sessionStorage.setItem('cartData',JSON.stringify(cartData));
-    alert('Cart saved successfully');
+    sessionStorage.setItem("cartData", JSON.stringify(cartData));
+    alert("Cart saved successfully");
     return;
   } catch (err) {
-    console.log(`Error postCartApi`, err);
     throw err;
   }
 };

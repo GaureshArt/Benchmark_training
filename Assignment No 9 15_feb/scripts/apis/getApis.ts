@@ -21,7 +21,7 @@ export const getAllProductsApi = async ():Promise<getProductsResponseType[]>=>{
         return res.data;
     }
     catch(err){
-        console.error(`Error in getAllProducts: `,err);
+        
         throw err;
     }
 }
@@ -52,7 +52,7 @@ export const getUserCartApi = async():Promise<getUserCartType[]>=>{
         const res = await cartInstance.get<getUserCartType[]>(`/user/${id}`)
         return res.data;
     }catch(err){
-        console.log(`Error in getUserCartApi`,err);
+        
         throw err;
     }
 }
@@ -64,7 +64,7 @@ export const getProductByIdApi = async(id:number):Promise<getProductsResponseTyp
         
         return res.data;
     }catch(err){
-        console.error(err);
+        
         throw err;
     }
 }

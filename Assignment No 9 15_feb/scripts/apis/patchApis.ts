@@ -10,7 +10,7 @@ export const patchUserCartApi = async (data:patchUserCartParamType)=>{
     const cartData = sessionStorage.getItem('cartData') as string;
     
     const cartDataJson:getUserCartType[] = JSON.parse(cartData);
-    console.log("cartFata",cartDataJson)
+
     const obj = cartDataJson.find((cart:getUserCartType)=>cart.id===+data.cartId) as getUserCartType;
     
      const updateData = obj.products.map((prod:getUserCartTypeProductsType)=>{
@@ -18,7 +18,7 @@ export const patchUserCartApi = async (data:patchUserCartParamType)=>{
     }
     )
     obj.products = [...updateData];
-    console.log("cartFata new",cartDataJson)
+
     sessionStorage.setItem('cartData',JSON.stringify(cartDataJson));
 
     const res = await cartInstance.patch<patchResponseType>(`/${data.cartId}`,{
@@ -26,7 +26,7 @@ export const patchUserCartApi = async (data:patchUserCartParamType)=>{
         date:data.date,
         products:updateData
     })
-    console.log("respones:,",res)
+
     alert(`Status code: ${res.status}`);
 
 }
@@ -41,7 +41,7 @@ return ;
     const cartData = sessionStorage.getItem('cartData') as string ;
     const cartDataJson:getUserCartType[] = JSON.parse(cartData);
     const obj = cartDataJson.filter((cart)=>cart.id!==+data.cartId) as getUserCartType[];
-    console.log("new data",obj)    
+     
     sessionStorage.setItem('cartData',JSON.stringify(obj));
     alert("Cart is removed")
     location.reload();
