@@ -1,5 +1,5 @@
 import { getAllProductsApi, getProductsByCategoryApi } from "./apis/getApis.js";
-import { getProductsResponseType } from "./apis/utilityTypes.js";
+import { IGetProductsResponseType } from "./apis/utilityTypes.js";
 
 const productSection = document.querySelector(
   ".product-section"
@@ -7,7 +7,7 @@ const productSection = document.querySelector(
 const myCartBtn = document.querySelector(".my-cart") as HTMLButtonElement;
 const filterOpt = document.querySelector(".filter") as HTMLSelectElement;
 
-const showAllProducts = (products: getProductsResponseType[]) => {
+const showAllProducts = (products: IGetProductsResponseType[]) => {
   productSection.innerHTML = "";
   for (const prod of products) {
     const productCard = document.createElement("div") as HTMLDivElement;

@@ -1,6 +1,6 @@
 import { AxiosHeaders } from "../../node_modules/axios/index";
 
-export type userData = {
+export interface IUserData {
   id: number;
   email: string;
   username: string;
@@ -10,16 +10,16 @@ export type userData = {
   phone: string;
 };
 
-export type userDataForAuthType = {
+export interface IUserDataForAuthType  {
   username: string;
   password: string;
 };
 
-export type authLogInApiResponse = {
+export interface IAuthLogInApiResponse  {
   token: string;
 };
 
-export type getProductsResponseType = {
+export interface IGetProductsResponseType  {
   id: number;
   title: string;
   category: string;
@@ -29,26 +29,26 @@ export type getProductsResponseType = {
   description: string;
 };
 
-export type getUserCartType = {
+export interface IGetUserCartType  {
   date: string;
   id: number;
-  products: getUserCartTypeProductsType[];
+  products: IGetUserCartTypeProductsType[];
   userId: number;
 };
 
-export type getUserCartTypeProductsType = {
+export interface IGetUserCartTypeProductsType  {
   productId: number;
   quantity: number;
 };
 
-export type patchUserCartParamType = {
+export interface IPatchUserCartParamType  {
   productId: string;
   quantity: string;
   cartId: string;
   date?: string;
 };
 
-export type patchResponseType = {
+export interface IPatchResponseType {
   config: object;
   data: object;
 

@@ -1,6 +1,6 @@
 import { getProductByIdApi } from "./apis/getApis.js";
 import { postCartApi } from "./apis/postApis.js";
-import { getProductsResponseType } from "./apis/utilityTypes.js";
+import { IGetProductsResponseType } from "./apis/utilityTypes.js";
 
 const productSection = document.querySelector(
   ".product-section"
@@ -24,7 +24,7 @@ const getProductById = async (productId: string) => {
   return product;
 };
 
-const showProductById = (product: getProductsResponseType) => {
+const showProductById = (product: IGetProductsResponseType) => {
   productSection.id = `${product.id}`;
   productImage.src = `${product.image}`;
   productTitle.innerText = `${product.title}`;

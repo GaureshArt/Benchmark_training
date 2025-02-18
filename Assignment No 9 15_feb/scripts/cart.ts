@@ -4,15 +4,15 @@ import {
   removeUserCartCardFakeApi,
 } from "./apis/patchApis.js";
 import {
-  getUserCartType,
-  getProductsResponseType,
-  patchUserCartParamType,
+  IGetUserCartType,
+  IGetProductsResponseType,
+  IPatchUserCartParamType,
 } from "./apis/utilityTypes.js";
 
 const mainSection = document.querySelector(".main") as HTMLDivElement;
 
 const createCartCard = (
-  prodData: getProductsResponseType,
+  prodData: IGetProductsResponseType,
   quantity: number,
   cartId: number
 ) => {
@@ -46,7 +46,7 @@ const createCartCard = (
 const renderCartProducts = () => {
   const data = JSON.parse(
     sessionStorage.getItem("cartData") as string
-  ) as getUserCartType[];
+  ) as IGetUserCartType[];
   data.map((cart, id) => {
     cart.products.map(async (prod) => {
       const res = await getProductByIdApi(prod.productId);
@@ -58,7 +58,7 @@ const renderUserCartData = () => {
   renderCartProducts();
 };
 
-const saveCartProductsInsession = (data: getUserCartType[]) => {
+const saveCartProductsInsession = (data: IGetUserCartType[]) => {
   const prevData = sessionStorage.getItem("cartData");
   if (prevData) return;
 
@@ -104,7 +104,7 @@ const handleSaveCart = (cartCard: HTMLDivElement, editDiv: HTMLDivElement) => {
   quantityDiv.innerHTML = `
         Quantity: ${quantityValue}
     `;
-  const updateData: patchUserCartParamType = {
+  const updateData: IPatchUserCartParamType = {
     date: new Date().toISOString(),
     productId: cartCard.dataset.productId as string,
     quantity: quantityValue,
@@ -118,7 +118,7 @@ const handleSaveCart = (cartCard: HTMLDivElement, editDiv: HTMLDivElement) => {
 const handleRemoveCartCard = (cardCart: HTMLDivElement) => {
   const cartId = (cardCart.closest(".cart-card") as HTMLDivElement).dataset
     .cartId as string;
-  const updateData: patchUserCartParamType = {
+  const updateData: IPatchUserCartParamType = {
     date: new Date().toISOString(),
     productId: cardCart.dataset.productId as string,
     quantity: cardCart.dataset.quantity as string,

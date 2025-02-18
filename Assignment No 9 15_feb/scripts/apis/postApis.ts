@@ -1,16 +1,16 @@
 import { getId } from "./getApis.js";
 import { cartInstance, loginInstance } from "./instanceApis.js";
 import {
-  authLogInApiResponse,
-  getUserCartType,
-  userDataForAuthType,
+  IAuthLogInApiResponse,
+  IGetUserCartType,
+  IUserDataForAuthType,
 } from "./utilityTypes.js";
 
 export const authLogInApi = async (
-  userdata: userDataForAuthType
-): Promise<authLogInApiResponse> => {
+  userdata: IUserDataForAuthType
+): Promise<IAuthLogInApiResponse> => {
   try {
-    const res = await loginInstance.post<authLogInApiResponse>(
+    const res = await loginInstance.post<IAuthLogInApiResponse>(
       "/login",
       userdata
     );
@@ -21,7 +21,7 @@ export const authLogInApi = async (
 };
 
 const cartIsAlreadyAdded = (
-  cartData: getUserCartType[],
+  cartData: IGetUserCartType[],
   id: number
 ): boolean => {
   return cartData.some((cart) =>
@@ -33,7 +33,7 @@ export const postCartApi = async (
   quantity: number
 ): Promise<void> => {
   try {
-    const cartData: getUserCartType[] = JSON.parse(
+    const cartData: IGetUserCartType[] = JSON.parse(
       sessionStorage.getItem("cartData") as string
     );
     if (cartIsAlreadyAdded(cartData, id)) {
@@ -43,12 +43,12 @@ export const postCartApi = async (
     const token = sessionStorage.getItem("user-token") as string;
     const userid: number = +getId(token);
 
-    const newCart: Omit<getUserCartType, "id"> = {
+    const newCart: Omit<IGetUserCartType, "id"> = {
       date: new Date().toISOString(),
       userId: userid,
       products: [{ productId: id, quantity: quantity }],
     };
-    const res = await cartInstance.post<getUserCartType>("/", newCart);
+    const res = await cartInstance.post<IGetUserCartType>("/", newCart);
     cartData.push(res.data);
     sessionStorage.setItem("cartData", JSON.stringify(cartData));
     alert("Cart saved successfully");

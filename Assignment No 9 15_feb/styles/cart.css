@@ -18,7 +18,7 @@
     width: 23vw;
     height: 58vh;
     background-color:#d8def1;
-    cursor: pointer;
+
     padding: 1rem;
     border-radius: 1.4rem;
     .product-image{
@@ -118,9 +118,4 @@
         padding-bottom: .3rem;
     }
 
-}
-
-.cart-card:hover .product-image{
-    transform: scale(1.1);
-    transition: transform .4s ease-in-out;
 }

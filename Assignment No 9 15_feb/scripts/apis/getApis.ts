@@ -1,12 +1,12 @@
 import { userInstance,productInstance,cartInstance } from "./instanceApis.js";
-import {getUserCartType,getProductsResponseType, userData} from "./utilityTypes.js"
+import {IGetUserCartType,IGetProductsResponseType, IUserData} from "./utilityTypes.js"
 
 
 
-export const getUserApi = async ():Promise<userData>=>{
+export const getUserApi = async ():Promise<IUserData>=>{
     const id = Math.floor(Math.random()*10)+1;
     try{
-        const res =  (await userInstance.get<userData>(`/${id}`)).data;
+        const res =  (await userInstance.get<IUserData>(`/${id}`)).data;
         return res;
     }catch(err){
         console.log(err);
@@ -15,9 +15,9 @@ export const getUserApi = async ():Promise<userData>=>{
 }
 
 
-export const getAllProductsApi = async ():Promise<getProductsResponseType[]>=>{
+export const getAllProductsApi = async ():Promise<IGetProductsResponseType[]>=>{
     try{
-        const res = await productInstance.get<getProductsResponseType[]>('/');
+        const res = await productInstance.get<IGetProductsResponseType[]>('/');
         return res.data;
     }
     catch(err){
@@ -27,9 +27,9 @@ export const getAllProductsApi = async ():Promise<getProductsResponseType[]>=>{
 }
 
 
-export const getProductsByCategoryApi = async (category:string):Promise<getProductsResponseType[]>=>{
+export const getProductsByCategoryApi = async (category:string):Promise<IGetProductsResponseType[]>=>{
     try{
-        const res = await productInstance.get<getProductsResponseType[]>(`/category/${category}`)
+        const res = await productInstance.get<IGetProductsResponseType[]>(`/category/${category}`)
         return res.data;     
     }
     catch(err){
@@ -45,11 +45,11 @@ export const getId = (token:string)=>{
 }
 
 
-export const getUserCartApi = async():Promise<getUserCartType[]>=>{
+export const getUserCartApi = async():Promise<IGetUserCartType[]>=>{
     try{
         const token = sessionStorage.getItem('user-token') as string;
         const id:number = getId(token);
-        const res = await cartInstance.get<getUserCartType[]>(`/user/${id}`)
+        const res = await cartInstance.get<IGetUserCartType[]>(`/user/${id}`)
         return res.data;
     }catch(err){
         
@@ -58,9 +58,9 @@ export const getUserCartApi = async():Promise<getUserCartType[]>=>{
 }
 
 
-export const getProductByIdApi = async(id:number):Promise<getProductsResponseType>=>{
+export const getProductByIdApi = async(id:number):Promise<IGetProductsResponseType>=>{
     try{
-        const res = await productInstance.get<getProductsResponseType>(`/${id}`);
+        const res = await productInstance.get<IGetProductsResponseType>(`/${id}`);
         
         return res.data;
     }catch(err){
