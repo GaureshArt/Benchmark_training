@@ -2,10 +2,11 @@ import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import { getProductById } from "../apis/productApi"
 import { IProductType } from "../types/productTypes"
+import { useCart } from "../hooks/useCart"
+import toast, { Toaster } from "react-hot-toast"
 
 
 export const ProductViewCard = () => {
-    console.log("re")
     const [searchParams] = useSearchParams()
     const [prodData,setProdData] = useState<IProductType>({
         id:0,
@@ -16,6 +17,7 @@ export const ProductViewCard = () => {
     category:'',
     rating:{rate:0,count:0},
     })
+    const {cartState, cartDispatch} = useCart()
     const [quantity,setQuantity] = useState<number>(1);
     useEffect(()=>{
         const fetchProductData = async()=>{
@@ -37,9 +39,20 @@ export const ProductViewCard = () => {
         }
 
     }
-
+    const handleAddCart = ()=>{
+        console.log("ejhwengbhjerg")
+        const id = Number(searchParams.get('productId'));
+        if(cartState.existingProducts.has(id)){
+            console.log("ejh")
+            toast.success('product is already added!');
+            return;
+        }
+        cartDispatch({type:'ADD_CART_PRODUCT',productId:id,quantity:quantity});
+        toast.success('product  added successfully!');
+    }
   return (
     <>
+        <Toaster/>
         {
             prodData.id!==0?
             <div className="w-3/5 h-auto border border-stone-800 rounded-lg overflow-hidden flex p-10 gap-14 mt-8">
@@ -59,7 +72,7 @@ export const ProductViewCard = () => {
                     </div>
                     <div className="flex gap-5 items-center w-full justify-end  ">
                         <span className="text-xl">Total Price: ${(quantity*prodData.price).toPrecision(6)}</span>
-                        <button className="w-22 border rounded-lg h-10 bg-stone-900 text-stone-50 cursor-pointer">Add Cart</button>
+                        <button className="w-22 border rounded-lg h-10 bg-stone-900 text-stone-50 cursor-pointer" onClick={handleAddCart}>Add Cart</button>
                     </div>
                 </div>
             </div>

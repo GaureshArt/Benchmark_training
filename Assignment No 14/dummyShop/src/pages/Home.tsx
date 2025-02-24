@@ -3,7 +3,7 @@ import { useProduct } from "../hooks/useProduct"
 import { getAllCategories, getProductsApi } from "../apis/productApi";
 import { ProductCard } from "../components/ProductCard";
 import { Category } from "../types/productTypes";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 
@@ -50,7 +50,9 @@ export const Home = () => {
                         })
                     }
                 </select>
-                <button className="w-22 border rounded-lg h-10 bg-stone-900 text-stone-50 cursor-pointer" onClick={handleCartButton}>My Cart</button>
+                
+                    <button className="w-22 border rounded-lg h-10 bg-stone-900 text-stone-50 cursor-pointer" onClick={handleCartButton}>My Cart</button>
+                
                 </div>
                 <div className="flex gap-5 flex-wrap p-2 justify-evenly">
                     {

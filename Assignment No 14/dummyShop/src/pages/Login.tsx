@@ -14,6 +14,7 @@ export const Login = () => {
     const handleGetCredentials = async ():Promise<void>=>{
         const loader = toast.loading('please Wait');
         const data = await getUser();
+        
         setUserData({
             username:data.username,
             password:data.password,
