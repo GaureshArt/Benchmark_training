@@ -34,3 +34,14 @@ export interface IProductContextType {
 export interface IProductCardProps{
     prod:IProductType;
 }
+
+
+export type Category = string;
+export interface IProductCategoriesApiType{
+    data:Category[];
+}
+
+
+export interface IGetProductByIdProps  {
+id:number;
+}

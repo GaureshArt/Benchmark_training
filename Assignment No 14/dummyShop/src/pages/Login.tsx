@@ -2,22 +2,33 @@ import { useState } from "react";
 import { getUser } from "../apis/authApi"
 import { IUserDataType } from "../types/userTypes";
 import { Toaster,toast } from "react-hot-toast";
+import {  useNavigate } from "react-router-dom";
 
 export const Login = () => {
     const [userData,setUserData] = useState<IUserDataType>({
         username:'',
-        password:''
+        password:'',
+        id:0
     })
+    const navigate = useNavigate();
     const handleGetCredentials = async ():Promise<void>=>{
         const loader = toast.loading('please Wait');
         const data = await getUser();
         setUserData({
             username:data.username,
-            password:data.password
+            password:data.password,
+            id:data.id
         })
         toast.success('Successfully retrive credentials',{id:loader})
     }
-  return (
+    const handleUserLogin = ()=>{
+        if(!(userData.username && userData.password)){
+            toast.error('Please get credentials');
+            return;
+        }
+        navigate(`/home/${userData.id}`)
+    }
+    return (
     <>
     <Toaster/>
     <div className="w-svw h-svh border bg-slate-200 grid place-items-center  font-mono tracking-wide ">
@@ -38,7 +49,7 @@ export const Login = () => {
                 </div>
                 <div className="flex w-full justify-around pt-8">
                     <button className="h-10 border p-2 rounded-xl border-yellow-700 bg-yellow-100 cursor-pointer  text-yellow-700">Log in as Admin</button>
-                    <button className="h-10 border p-2 rounded-xl border-fuchsia-700 bg-fuchsia-100 cursor-pointer text-fuchsia-700">Log in as User</button>
+                    <button className="h-10 border p-2 rounded-xl border-fuchsia-700 bg-fuchsia-100 cursor-pointer text-fuchsia-700" onClick={handleUserLogin}>Log in as User</button>
                 </div>
         </div>
     </div>

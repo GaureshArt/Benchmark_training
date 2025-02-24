@@ -15,4 +15,5 @@ export interface IUserTypeApi {
 export interface IUserDataType{
     username:string;
     password:string;
+    id:number;
 }
