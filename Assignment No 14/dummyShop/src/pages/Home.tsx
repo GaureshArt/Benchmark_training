@@ -3,7 +3,7 @@ import { useProduct } from "../hooks/useProduct"
 import { getAllCategories, getProductsApi } from "../apis/productApi";
 import { ProductCard } from "../components/ProductCard";
 import { Category } from "../types/productTypes";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 
 
@@ -13,18 +13,21 @@ export const Home = () => {
     const [selectedCategory,setSelectedCategory] = useState<Category>('All products');
     const navigate = useNavigate();
     const {id} = useParams();
+    const [searchParams] = useSearchParams();
     useEffect(()=>{
-        const fetchProducts = async ()=>{
-            const res = (await getProductsApi())
-            productDispatch({type:'SET_PRODUCTS',data:res});
-        }
         const fetchCategories = async()=>{
             const res = await getAllCategories();
             setCategories(res);
         }
-        fetchProducts();
         fetchCategories();
+        if(productState.originalData.length)return;
+        const fetchProducts = async ()=>{
+            const res = (await getProductsApi())
+            productDispatch({type:'SET_PRODUCTS',data:res});
+        }
+        fetchProducts();
     },[])
+    
     
     const handleCategoryChange = (e:ChangeEvent<HTMLSelectElement>)=>{
         setSelectedCategory(e.target.value);
@@ -52,7 +55,11 @@ export const Home = () => {
                 </select>
                 
                     <button className="w-22 border rounded-lg h-10 bg-stone-900 text-stone-50 cursor-pointer" onClick={handleCartButton}>My Cart</button>
-                
+                    {
+                        searchParams.get('role')==='admin'?<>
+                        <Link className="w-auto flex justify-center items-center p-2 border rounded-lg h-10 bg-stone-900 text-stone-50 cursor-pointer" to={`/manageProduct/${id}?role=admin`}>Manage Product </Link>
+                        </>:''
+                    }
                 </div>
                 <div className="flex gap-5 flex-wrap p-2 justify-evenly">
                     {

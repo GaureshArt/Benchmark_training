@@ -1,4 +1,5 @@
 
+import { IAddProductPropType } from "../types/manageProductType";
 import { Category, IGetProductByIdProps, IProductType } from "../types/productTypes";
 import { fakeStoreApi } from "./authApi"; 
 
@@ -35,4 +36,17 @@ export const getAllCategories = async():Promise<Category[]>=>{
     }
             
             
+}
+
+
+export const addProduct = async({prod}:IAddProductPropType):Promise<IProductType>=>{
+    try{    
+        const res = await fakeStoreApi.post<IProductType>('/products',{
+            ...prod
+        });
+        return (res).data;
+
+    }catch(err){
+        throw new Error(`Error in addProduct ${err}`)
+    }
 }

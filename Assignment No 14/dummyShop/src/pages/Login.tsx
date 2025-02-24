@@ -29,6 +29,13 @@ export const Login = () => {
         }
         navigate(`/home/${userData.id}`)
     }
+    const handleAdminLogin = ()=>{
+        if(!(userData.username && userData.password)){
+            toast.error('Please get credentials');
+            return;
+        }
+        navigate(`/manageProduct/${userData.id}?role=admin`);
+    }
     return (
     <>
     <Toaster/>
@@ -49,7 +56,7 @@ export const Login = () => {
                     <button className="h-10 border p-2 rounded-xl border-blue-700 bg-blue-100 cursor-pointer  text-blue-800" onClick={handleGetCredentials}>Get Credentials</button>
                 </div>
                 <div className="flex w-full justify-around pt-8">
-                    <button className="h-10 border p-2 rounded-xl border-yellow-700 bg-yellow-100 cursor-pointer  text-yellow-700">Log in as Admin</button>
+                    <button className="h-10 border p-2 rounded-xl border-yellow-700 bg-yellow-100 cursor-pointer  text-yellow-700" onClick={handleAdminLogin}>Log in as Admin</button>
                     <button className="h-10 border p-2 rounded-xl border-fuchsia-700 bg-fuchsia-100 cursor-pointer text-fuchsia-700" onClick={handleUserLogin}>Log in as User</button>
                 </div>
         </div>

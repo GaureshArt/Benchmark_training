@@ -19,6 +19,15 @@ export const productReducer = (state:IProductReducerState,action:productAction):
                 ...state,filterData:newData,
             }
         }
+        case 'ADD_PRODUCT':{
+            const isExits = state.originalData.find((prod)=>prod.title === action.data.title);
+            console.log('lkhgkjer:',isExits)
+            if(isExits)return state;
+            state.originalData.push(action.data);
+            return {
+                ...state
+            }
+        }
     
     }
 }

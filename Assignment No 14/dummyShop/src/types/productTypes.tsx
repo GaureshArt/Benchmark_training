@@ -23,6 +23,8 @@ export type productAction = {
     type:'SET_PRODUCTS',data:IProductType[];
 }|{
     type:'FILTER_PRODUCTS',category:string;
+} |{
+    type:'ADD_PRODUCT',data:IProductType
 }
 
 
