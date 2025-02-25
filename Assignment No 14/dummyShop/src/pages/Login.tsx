@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getUser } from "../apis/authApi"
 import { IUserDataType } from "../types/userTypes";
 import { Toaster,toast } from "react-hot-toast";
-import {  useNavigate } from "react-router-dom";
+import {  useNavigate, useSearchParams } from "react-router-dom";
 
 export const Login = () => {
     const [userData,setUserData] = useState<IUserDataType>({
@@ -11,6 +11,8 @@ export const Login = () => {
         id:0
     })
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const role = searchParams.get('role');
     const handleGetCredentials = async ():Promise<void>=>{
         const loader = toast.loading('please Wait');
         const data = await getUser();
@@ -22,6 +24,7 @@ export const Login = () => {
         })
         toast.success('Successfully retrive credentials',{id:loader})
     }
+    
     const handleUserLogin = ()=>{
         if(!(userData.username && userData.password)){
             toast.error('Please get credentials');
@@ -56,8 +59,11 @@ export const Login = () => {
                     <button className="h-10 border p-2 rounded-xl border-blue-700 bg-blue-100 cursor-pointer  text-blue-800" onClick={handleGetCredentials}>Get Credentials</button>
                 </div>
                 <div className="flex w-full justify-around pt-8">
-                    <button className="h-10 border p-2 rounded-xl border-yellow-700 bg-yellow-100 cursor-pointer  text-yellow-700" onClick={handleAdminLogin}>Log in as Admin</button>
-                    <button className="h-10 border p-2 rounded-xl border-fuchsia-700 bg-fuchsia-100 cursor-pointer text-fuchsia-700" onClick={handleUserLogin}>Log in as User</button>
+                   {
+
+                   role==='admin'? <button className="h-10 border p-2 rounded-xl border-yellow-700 bg-yellow-100 cursor-pointer  text-yellow-700" onClick={handleAdminLogin}>Log in as Admin</button>
+                   :<button className="h-10 border p-2 rounded-xl border-fuchsia-700 bg-fuchsia-100 cursor-pointer text-fuchsia-700" onClick={handleUserLogin}>Log in as User</button>
+                   }
                 </div>
         </div>
     </div>

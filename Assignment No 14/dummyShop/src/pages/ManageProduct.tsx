@@ -33,8 +33,8 @@ export const ManageProduct = () => {
           <Link className="border border-fuchsia-800 bg-fuchsia-500 rounded p-2 text-lg" to={`/home/${id}?role=admin`}> Home</Link>
         </div>
         <button
-          className="w-24 h-10 border rounded-2xl bg-green-100 border-green-600 text-green-600"
-          onClick={() => setIsAdding(true)}
+          className="w-24 h-10 border rounded-2xl bg-green-100 border-green-600 text-green-600 cursor-pointer"
+          onClick={() => setIsAdding(!isAdding)}
         >
        
           Add Product

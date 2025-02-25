@@ -1,6 +1,6 @@
 
 import { IAddProductPropType } from "../types/manageProductType";
-import { Category, IGetProductByIdProps, IProductType } from "../types/productTypes";
+import { Category, IGetProductByIdProps, IProductType, IUpdateProductPropType } from "../types/productTypes";
 import { fakeStoreApi } from "./authApi"; 
 
 export const getProductsApi = async ():Promise<IProductType[]>=>{
@@ -17,7 +17,9 @@ export const getProductsApi = async ():Promise<IProductType[]>=>{
 
 export const getProductById = async({id}:IGetProductByIdProps):Promise<IProductType>=>{
     try{
+        
         const res = await fakeStoreApi.get<IProductType>(`/products/${id}`);
+        
         return res.data;
     }catch(err){
         throw new Error(`Error at getProductById ${err}`);
@@ -48,5 +50,17 @@ export const addProduct = async({prod}:IAddProductPropType):Promise<IProductType
 
     }catch(err){
         throw new Error(`Error in addProduct ${err}`)
+    }
+}
+
+
+export const updateProduct = async({data}:IUpdateProductPropType):Promise<IProductType>=>{
+    try{
+        const res = await fakeStoreApi.patch<IProductType>(`/products/${data.id}`,{
+            ...data
+        });
+        return res.data;
+    }catch(err){
+        throw new Error(`Error in updateProduct ${err}`);
     }
 }

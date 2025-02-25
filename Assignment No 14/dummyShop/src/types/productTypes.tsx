@@ -25,6 +25,8 @@ export type productAction = {
     type:'FILTER_PRODUCTS',category:string;
 } |{
     type:'ADD_PRODUCT',data:IProductType
+} |{
+    type:'UPDATE_PRODUCT',data:IProductType
 }
 
 
@@ -46,4 +48,8 @@ export interface IProductCategoriesApiType{
 
 export interface IGetProductByIdProps  {
 id:number;
+}
+
+export interface IUpdateProductPropType {
+    data:IProductType;
 }

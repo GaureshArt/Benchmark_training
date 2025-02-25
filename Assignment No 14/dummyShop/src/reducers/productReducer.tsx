@@ -28,6 +28,18 @@ export const productReducer = (state:IProductReducerState,action:productAction):
                 ...state
             }
         }
+        case 'UPDATE_PRODUCT':{
+            const newData = state.originalData.map((prod)=>{
+                if(prod.id===action.data.id){
+                    return {...prod, ...action.data};
+                }
+                return prod;
+            })
+            return {
+                originalData:newData,
+                filterData:newData
+            }
+        }
     
     }
 }

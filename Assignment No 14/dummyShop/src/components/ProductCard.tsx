@@ -21,7 +21,7 @@ export const ProductCard = ({prod}:IProductCardProps) => {
                 <span className="mt-14 p-2 text-2xl">${prod.price}</span>
                <div className="flex gap-5">
                <span className="text-xl flex items-center gap-1"><IoStar/>{(prod.rating?.rate)??0}</span>
-               { searchParam.get('role')?<Link className="w-20 flex justify-center items-center p-2 border rounded-lg h-10 bg-stone-900 text-stone-50 cursor-pointer"  to={`/editProduct/${id}?role=admin`}> Edit</Link>:''}
+               { searchParam.get('role')?<Link className="w-20 flex justify-center items-center p-2 border rounded-lg h-10 bg-stone-900 text-stone-50 cursor-pointer"  to={`/editProduct/${id}?role=admin&productId=${prod.id}`}> Edit</Link>:''}
                </div>
                 </div>
 
