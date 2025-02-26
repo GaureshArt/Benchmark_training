@@ -41,13 +41,13 @@ export const Home = () => {
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: () => getAllCategories(),
-    staleTime: 1000 * 60 *5,
+    staleTime: 1000 * 60 * 5,
   });
   const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(e.target.value);
   };
   const handleCartButton = () => {
-    navigate(`/cartView/${id}`);
+    navigate(`/cartView/${id}?role=${role}`);
   };
 
   if (isLoading) {

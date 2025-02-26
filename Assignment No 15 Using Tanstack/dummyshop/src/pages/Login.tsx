@@ -30,7 +30,7 @@ export const Login = () => {
       toast.error("Please get credentials");
       return;
     }
-    navigate(`/home/${userData.id}`);
+    navigate(`/manageProduct/${userData.id}?role=user`);
   };
   const handleAdminLogin = () => {
     if (!(userData.username && userData.password)) {

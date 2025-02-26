@@ -1,4 +1,3 @@
-import { ActionDispatch } from "react";
 
 export interface IGetProductsByCategoryProps {
   prodData: IProductType[] | undefined;
@@ -21,33 +20,6 @@ export interface IProductType {
   image: string;
   category: string;
   rating: IRatingType;
-}
-
-export interface IProductReducerState {
-  originalData: IProductType[];
-  filterData: IProductType[];
-}
-export type productAction =
-  | {
-      type: "SET_PRODUCTS";
-      data: IProductType[];
-    }
-  | {
-      type: "FILTER_PRODUCTS";
-      category: string;
-    }
-  | {
-      type: "ADD_PRODUCT";
-      data: IProductType;
-    }
-  | {
-      type: "UPDATE_PRODUCT";
-      data: IProductType;
-    };
-
-export interface IProductContextType {
-  productState: IProductReducerState;
-  productDispatch: ActionDispatch<[action: productAction]>;
 }
 
 export interface IProductCardProps {

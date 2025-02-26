@@ -6,8 +6,10 @@ export const fakeStoreApi = axios.create({
 })
 
 export const getUser = async ():Promise<IUserTypeApi>=>{
+    const randomId = Math.floor(Math.random()*10)+1;
+    
     try{
-        const res = fakeStoreApi.get<IUserTypeApi>('/users/1');
+        const res = fakeStoreApi.get<IUserTypeApi>(`/users/${randomId}`);
         const userData = (await res).data;
         return userData;
     }
