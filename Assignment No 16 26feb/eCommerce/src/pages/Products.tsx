@@ -3,6 +3,7 @@ import { DropDownForPrice } from "@/components/layouts/DropDownForPrice"
 import { DropDownMenuBox } from "@/components/layouts/DropDownMenuBox"
 import { ProductCard } from "@/components/layouts/ProductCard"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 import { useProductStore } from "@/store/useProductStore"
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
@@ -25,9 +26,11 @@ export const Products = () => {
         queryFn:getAllCategories,
     })
 
-    if(isLoading && filterData===undefined){
+    if(isLoading){
         return <>
-            <h1 className="text-3xl ">Loading...</h1>
+        <div className="w-svw h-svh p-10 flex items-center justify-center overflow-hidden">
+            <Skeleton className="w-full h-full"/>
+        </div>
         </>
     }
     if(isError){

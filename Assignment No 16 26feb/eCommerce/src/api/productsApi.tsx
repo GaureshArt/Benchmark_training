@@ -2,7 +2,7 @@ import { useProductStore } from "@/store/useProductStore";
 import {  getProductsByCategoryProps, IIDasProps, IProductCardPropType, IProductType } from "@/types/productsType";
 import axios from "axios";
 
-const fakeStoreApi = axios.create({
+export const fakeStoreApi = axios.create({
     baseURL:'https://fakestoreapi.com'
 });
 

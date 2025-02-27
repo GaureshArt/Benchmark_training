@@ -8,7 +8,7 @@ type UseProductStoreType = {
 };
 export const useProductStore = create<UseProductStoreType>()(
     devtools((set) => ({
-      filterProducts: [],
+      filterData: [],
       setProducts: (data) =>
         set({ filterData: data }, false, "setProducts"), // ✅ Named action for debugging
     }))
