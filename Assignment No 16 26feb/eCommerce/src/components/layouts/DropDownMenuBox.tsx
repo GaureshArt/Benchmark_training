@@ -1,36 +1,49 @@
 
-
-import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getProductsByCategory } from "@/api/productsApi";
 
 import { IProductType } from "@/types/productsType";
 import { Button } from "../ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 import { useProductStore } from "@/store/useProductStore";
 type DropDownMenuBoxProp = {
   itemList: string[];
-  category:string;
-  price:string;
-  setCategory:React.Dispatch<React.SetStateAction<string>>;
-  setPrice:React.Dispatch<React.SetStateAction<string>>;
+  category: string;
+  price: string;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
+  setPrice: React.Dispatch<React.SetStateAction<string>>;
 };
-export const DropDownMenuBox = ({ itemList,category,price,setCategory,setPrice }: DropDownMenuBoxProp) => {
- 
-
+export const DropDownMenuBox = ({
+  itemList,
+  category,
+  
+  setCategory,
+  
+}: DropDownMenuBoxProp) => {
   const queryClient = useQueryClient();
-  const setProducts = useProductStore((state)=>state.setProducts);
+  const setProducts = useProductStore((state) => state.setProducts);
   const categoryMutate = useMutation({
     mutationKey: [category],
     mutationFn: getProductsByCategory,
     onSuccess: (data) => {
       if (data.length === 0) {
-        const newData:IProductType[] =  queryClient.getQueryData(["products"])!;
-        setProducts(newData)
+        const newData: IProductType[] = queryClient.getQueryData(["products"])!;
+        setProducts(newData);
         return;
       }
-      useProductStore.setState({ filterData: data});
-
+      useProductStore.setState({ filterData: data });
     },
     onError: (error) => {
       throw new Error(error.message);
@@ -43,8 +56,8 @@ export const DropDownMenuBox = ({ itemList,category,price,setCategory,setPrice }
 
   return (
     <>
-      <DropdownMenu >
-        <DropdownMenuTrigger  asChild>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
           <Button>Filter</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="font-serif">
@@ -64,7 +77,11 @@ export const DropDownMenuBox = ({ itemList,category,price,setCategory,setPrice }
                     </DropdownMenuRadioItem>
                     {itemList.map((i, ind) => {
                       return (
-                        <DropdownMenuRadioItem className="font-serif" key={ind} value={i}>
+                        <DropdownMenuRadioItem
+                          className="font-serif"
+                          key={ind}
+                          value={i}
+                        >
                           {i}
                         </DropdownMenuRadioItem>
                       );
@@ -74,7 +91,6 @@ export const DropDownMenuBox = ({ itemList,category,price,setCategory,setPrice }
               </DropdownMenuPortal>
             </DropdownMenuSub>
             <DropdownMenuSeparator></DropdownMenuSeparator>
-            
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

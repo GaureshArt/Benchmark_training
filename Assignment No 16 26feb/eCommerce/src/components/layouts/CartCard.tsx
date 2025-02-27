@@ -1,4 +1,4 @@
-import { IProductCardPropType, IProductType } from "@/types/productsType";
+
 import {
   Card,
   CardContent,
@@ -11,13 +11,13 @@ import {
 
 import { Link } from "react-router-dom";
 import { AlertDialogBox } from "./AlertDialogBox";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {  useQuery } from "@tanstack/react-query";
 import { getProdById,  } from "@/api/productsApi";
 import { IProductCartType } from "@/types/CartType";
 import { useCartStore } from "@/store/useCartStore";
 import { DialogDemo } from "./DialogDemo";
 import { useState } from "react";
-import { Skeleton } from "../ui/skeleton";
+
 import { SkeletonLoader } from "./SkeletonLoader";
 
 export const CartCard = ({productId,quantity}:IProductCartType) => {

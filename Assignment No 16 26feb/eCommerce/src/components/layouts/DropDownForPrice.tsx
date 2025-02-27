@@ -1,50 +1,62 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from  "../ui/dropdown-menu"
-import React from 'react'
-import { Button } from '../ui/button'
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { IProductType } from '@/types/productsType';
-import { useProductStore } from '@/store/useProductStore';
-import { getAllCategories, getProductsByCategory } from "@/api/productsApi";
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import React from "react";
+import { Button } from "../ui/button";
+import { useMutation } from "@tanstack/react-query";
+import { IProductType } from "@/types/productsType";
+import { useProductStore } from "@/store/useProductStore";
+import { getAllCategories } from "@/api/productsApi";
 
 type DropDownMenuBoxProp = {
-    price:string;
-    itemList:string[];
-    setPrice:React.Dispatch<React.SetStateAction<string>>;
-  };
-export const DropDownForPrice = ({ price,setPrice,itemList }: DropDownMenuBoxProp) => {
+  price: string;
+  itemList: string[];
+  setPrice: React.Dispatch<React.SetStateAction<string>>;
+};
+export const DropDownForPrice = ({
+  price,
+  setPrice,
+  itemList,
+}: DropDownMenuBoxProp) => {
+  const filterData = useProductStore((state) => state.filterData);
+  const setProductByPrice = (): IProductType[] => {
+    console.log("price", price);
+    const newData = filterData.sort((a, b) => {
+      return price === "Low -> high" ? a.price - b.price : b.price - a.price;
+    });
 
-    const setProducts = useProductStore((state)=>state.setProducts);
-    const filterData = useProductStore((state)=>state.filterData);
-    const setProductByPrice = ():IProductType[]=>{
-          console.log('price',price);
-          const newData = filterData.sort((a,b)=>{
-    
-          return price==='Low -> high'?a.price - b.price:b.price-a.price;
-          })
-          
-          return newData;
-        }
-      
-      const priceMutate = useMutation({
-        mutationKey:['filterData'],
-        mutationFn:getAllCategories,
-        onSuccess:(data)=>{
-          useProductStore.setState({filterData:setProductByPrice()})
-          setPrice('reset');
-        },
-        onError:(e)=>{
-            throw new Error(e.message)
-        }
-      })
-      const handlePriceChange =(e:string)=>{
-        console.log("e",e);
-        setPrice(e);
-        priceMutate.mutate();
-      }
+    return newData;
+  };
+
+  const priceMutate = useMutation({
+    mutationKey: ["filterData"],
+    mutationFn: getAllCategories,
+    onSuccess: () => {
+      useProductStore.setState({ filterData: setProductByPrice() });
+      setPrice("reset");
+    },
+    onError: (e) => {
+      throw new Error(e.message);
+    },
+  });
+  const handlePriceChange = (e: string) => {
+    console.log("e", e);
+    setPrice(e);
+    priceMutate.mutate();
+  };
   return (
     <>
-    <DropdownMenu>
+      <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button>Sort</Button>
         </DropdownMenuTrigger>
@@ -75,10 +87,9 @@ export const DropDownForPrice = ({ price,setPrice,itemList }: DropDownMenuBoxPro
               </DropdownMenuPortal>
             </DropdownMenuSub>
             <DropdownMenuSeparator></DropdownMenuSeparator>
-            
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
-  )
-}
+  );
+};

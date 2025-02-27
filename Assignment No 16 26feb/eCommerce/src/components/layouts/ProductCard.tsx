@@ -53,7 +53,6 @@ export const ProductCard = ({ prod }: IProductCardPropType) => {
               {prod.title}
             </CardTitle>
             <CardTitle className="line-clamp-2 text-center font-thin">
-              
               Price: ${prod.price}
             </CardTitle>
           </CardContent>
