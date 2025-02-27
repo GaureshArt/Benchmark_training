@@ -5,6 +5,7 @@ import { Products } from "./pages/Products"
 import { Cart } from "./pages/Cart"
 import { ProductView } from "./pages/ProductView"
 import { ProductEdit } from "./pages/ProductEdit"
+import { ProductAdd } from "./pages/ProductAdd"
 function App() {
 
 
@@ -17,7 +18,9 @@ function App() {
         <Route path="/products" element={<Products/>}/>
         <Route path="/product/:id" element={<ProductView/>}/>
         <Route path="/product/edit/:id" element={<ProductEdit/>}/>
+        <Route path="/product/add" element={<ProductAdd/>}/>
         <Route path="/cart" element={<Cart/>}/>
+
 
       </Routes>
     </Router>

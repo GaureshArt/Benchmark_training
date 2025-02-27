@@ -8,7 +8,7 @@ const fakeStoreApi = axios.create({
 
 export const getAllProducts = async():Promise<IProductType[]>=>{
     const res = await fakeStoreApi.get<IProductType[]>('/products')
-    useProductStore.setState({ filterProducts: res.data });
+    useProductStore.setState({ filterData: res.data });
     return res.data;
 }
 export const getProdById = async({id}:IIDasProps):Promise<IProductType>=>{
@@ -32,6 +32,12 @@ export const getAllCategories = async()=>{
 }
 
 export const getProductsByCategory = async({category}:getProductsByCategoryProps):Promise<IProductType[]>=>{
+    if(category==='reset')return [];
     const res = await fakeStoreApi.get<IProductType[]>(`/products/category/${category}`)
+    return res.data;
+}
+
+export const addProduct = async({data}:{data:Partial<IProductType>})=>{
+    const res = await fakeStoreApi.post(`/products`,data);
     return res.data;
 }

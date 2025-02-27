@@ -24,15 +24,12 @@ export const DropDownMenuBox = ({ itemList,category,price,setCategory,setPrice }
     mutationKey: [category],
     mutationFn: getProductsByCategory,
     onSuccess: (data) => {
-      console.log("fdg",data)
-      
-      console.log("set",data)
       if (data.length === 0) {
         const newData:IProductType[] =  queryClient.getQueryData(["products"])!;
         setProducts(newData)
         return;
       }
-      useProductStore.setState({ filterProducts: data});
+      useProductStore.setState({ filterData: data});
 
     },
     onError: (error) => {
@@ -46,11 +43,11 @@ export const DropDownMenuBox = ({ itemList,category,price,setCategory,setPrice }
 
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+      <DropdownMenu >
+        <DropdownMenuTrigger  asChild>
           <Button>Filter</Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="font-serif">
           <DropdownMenuSeparator />
 
           <DropdownMenuGroup>
@@ -67,7 +64,7 @@ export const DropDownMenuBox = ({ itemList,category,price,setCategory,setPrice }
                     </DropdownMenuRadioItem>
                     {itemList.map((i, ind) => {
                       return (
-                        <DropdownMenuRadioItem key={ind} value={i}>
+                        <DropdownMenuRadioItem className="font-serif" key={ind} value={i}>
                           {i}
                         </DropdownMenuRadioItem>
                       );

@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom"
 
 export const ProductEdit = () => {
     const {id} = useParams();
-    const [formData,setFormData] = useState<IProductType>({id:Number(id!),title:'',category:'',price:'',description:'',image:''});
+    const [formData,setFormData] = useState<IProductType>({id:Number(id!),title:'',category:'',price:0,description:'',image:''});
     const queryClient = useQueryClient();
     const {data,isLoading,isError,error} = useQuery({
         queryKey:['product',id],
